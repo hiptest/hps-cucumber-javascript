@@ -1,0 +1,16 @@
+language: node
+sudo: false
+
+before_install:
+  - rvm install 2.2
+  - rvm use 2.2
+  - gem install hiptest-publisher
+  - "hiptest-publisher -c cucumber-js.conf --only=features,step_definitions"
+  - npm install
+
+script:
+  - ./node_modules/.bin/cucumber.js
+
+after_script:
+  - "hiptest-publisher -c cucumber-js.conf --push=report.xml
+
