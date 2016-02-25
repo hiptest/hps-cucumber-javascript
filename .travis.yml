@@ -12,5 +12,5 @@ script:
   - ./node_modules/.bin/cucumber.js
 
 after_script:
-  - "hiptest-publisher -c cucumber-js.conf --push=report.xml
+  - hiptest-publisher -c cucumber-js.conf --push=report.xml
 
