@@ -1,6 +1,5 @@
 # hps-cucumber-javascript
-
-<Travis build status>
+[![Build Status](https://travis-ci.org/hiptest/hps-cucumber-javascript.svg?branch=master)](https://travis-ci.org/hiptest/hps-cucumber-javascript)
 
 Hiptest publisher samples with Cucumber/Javascript
 
@@ -19,22 +18,20 @@ The SUT is a (not that much) simple coffee machine. You start it, you ask for a 
 Update tests
 -------------
 
-
 To update the tests:
 
     hiptest-publisher -c cucumber-js.conf --only=features,step_definitions
 
-The tests are generated in [``<path the tests>``](<github path to tests>)
+The tests are generated in the [``features``](https://github.com/hiptest/hps-cucumber-javascript/tree/master/features) directory.
+
 
 Run tests
 ---------
 
-
 To build the project and run the tests, use the following command:
 
-    <command to run the tests with report>
+    node_modules/.bin/cucumber-js --format=json | node_modules/.bin/cucumber-junit > junit_output.xml
 
-The SUT implementation can be seen in [``<path to sut>``](<github path to sut>)
+The SUT implementation can be seen in [``src/coffee_machine.js!``](https://github.com/hiptest/hps-cucumber-javascript/blob/master/src/coffee_machine.js)
 
-The test report is generated in ```<path to test report>```
-
+The test report is generated in ```junit_output.xml```
