@@ -5,12 +5,13 @@ before_install:
   - rvm install 2.2
   - rvm use 2.2
   - gem install hiptest-publisher
-  - "hiptest-publisher -c cucumber-js.conf --only=features,step_definitions"
+  - "hiptest-publisher -c cucumber-js.conf --only=features,step_definitions --test-run-id=16534"
   - npm install
 
 script:
   - node_modules/.bin/cucumber-js --format=json | node_modules/.bin/cucumber-junit > junit_output.xml
 
 after_script:
-  - hiptest-publisher -c cucumber-js.conf --push=report.xml
+  - hiptest-publisher -c cucumber-js.conf --push=junit_output.xml --test-run-id=16534
+
 
