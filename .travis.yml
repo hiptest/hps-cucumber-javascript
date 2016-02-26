@@ -9,7 +9,7 @@ before_install:
   - npm install
 
 script:
-  - node_modules/.bin/cucumber-js --format=json | node_modules/.bin/cucumber-junit > junit_output.xml
+  - node_modules/.bin/cucumber-js --format=json | node_modules/cucumber-junit/bin/cucumber-junit --features-as-suites > junit_output.xml
 
 after_script:
   - hiptest-publisher -c cucumber-js.conf --push=junit_output.xml --test-run-id=16534
