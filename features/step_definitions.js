@@ -39,7 +39,7 @@ module.exports = function () {
         callback();
     });
 
-    this.Given(/^I empty the coffee grounds$/, function (callback) {
+    this.When(/^I empty the coffee grounds$/, function (callback) {
         this.actionwords.iEmptyTheCoffeeGrounds();
         callback();
     });
@@ -54,7 +54,7 @@ module.exports = function () {
         callback();
     });
 
-    this.When(/^I take "(.*)" coffees$/, function (coffee_number, callback) {
+    this.Given(/^I take "(.*)" coffees$/, function (coffee_number, callback) {
         this.actionwords.iTakeCoffeeNumberCoffees(coffee_number);
         callback();
     });
@@ -64,13 +64,33 @@ module.exports = function () {
         callback();
     });
 
-    this.When(/^fifty coffees have been taken without filling the tank$/, function (callback) {
-        this.actionwords.fiftyCoffeesHaveBeenTakenWithoutFillingTheTank();
+    this.Given(/^I handle everything except the water tank$/, function (callback) {
+        this.actionwords.iHandleEverythingExceptTheWaterTank();
         callback();
     });
 
-    this.When(/^thirty eight coffees are taken without filling beans$/, function (callback) {
-        this.actionwords.thirtyEightCoffeesAreTakenWithoutFillingBeans();
+    this.Given(/^I handle water tank$/, function (callback) {
+        this.actionwords.iHandleWaterTank();
+        callback();
+    });
+
+    this.Given(/^I handle beans$/, function (callback) {
+        this.actionwords.iHandleBeans();
+        callback();
+    });
+
+    this.Given(/^I handle coffee grounds$/, function (callback) {
+        this.actionwords.iHandleCoffeeGrounds();
+        callback();
+    });
+
+    this.Given(/^I handle everything except the beans$/, function (callback) {
+        this.actionwords.iHandleEverythingExceptTheBeans();
+        callback();
+    });
+
+    this.Given(/^I handle everything except the grounds$/, function (callback) {
+        this.actionwords.iHandleEverythingExceptTheGrounds();
         callback();
     });
 }
