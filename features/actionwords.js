@@ -1,40 +1,47 @@
 var assert = require('assert');
 
 exports.Actionwords = {
+  getCoffeeMachine: function () {
+    if (this.coffeeMachine === undefined) {
+      this.coffeeMachine = require('../src/coffee_machine.js').CoffeeMachine();
+    }
+    return this.coffeeMachine;
+  },
+
   iStartTheCoffeeMachine: function (lang) {
-    this.sut.start(lang);
+    this.getCoffeeMachine().start(lang);
   },
 
   iShutdownTheCoffeeMachine: function () {
-    this.sut.stop();
+    this.getCoffeeMachine().stop();
   },
 
   messageMessageShouldBeDisplayed: function (message) {
-    assert.equal(message || "", this.sut.get('message'));
+    assert.equal(message || "", this.getCoffeeMachine().get('message'));
   },
 
   coffeeShouldBeServed: function () {
-    assert.equal(true, this.sut.get('coffeeServed'));
+    assert.equal(true, this.getCoffeeMachine().get('coffeeServed'));
   },
 
   coffeeShouldNotBeServed: function () {
-    assert.equal(false, this.sut.get('coffeeServed'));
+    assert.equal(false, this.getCoffeeMachine().get('coffeeServed'));
   },
 
   iTakeACoffee: function () {
-    this.sut.takeCoffee();
+    this.getCoffeeMachine().takeCoffee();
   },
 
   iEmptyTheCoffeeGrounds: function () {
-    this.sut.emptyGrounds();
+    this.getCoffeeMachine().emptyGrounds();
   },
 
   iFillTheBeansTank: function () {
-    this.sut.fillBeans();
+    this.getCoffeeMachine().fillBeans();
   },
 
   iFillTheWaterTank: function () {
-    this.sut.fillTank();
+    this.getCoffeeMachine().fillTank();
   },
 
   iTakeCoffeeNumberCoffees: function (coffee_number) {

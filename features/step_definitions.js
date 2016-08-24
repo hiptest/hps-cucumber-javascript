@@ -1,11 +1,10 @@
 module.exports = function () {
-    this.Around(function (scenario, runScenario) {
+    this.Before(function (scenario) {
         this.actionwords = Object.create(require('./actionwords.js').Actionwords);
-        this.actionwords.sut = require('../src/coffee_machine.js').CoffeeMachine();
+    });
 
-        runScenario(null, function () {
-            this.actionwords = null;
-        });
+    this.After(function (scenario) {
+        this.actionwords = null;
     });
 
 
