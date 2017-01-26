@@ -8,8 +8,8 @@ module.exports = function () {
     });
 
 
-    this.When(/^I start the coffee machine "(.*)"$/, function (lang, callback) {
-        this.actionwords.iStartTheCoffeeMachine(lang);
+    this.When(/^I start the coffee machine using language "(.*)"$/, function (lang, callback) {
+        this.actionwords.iStartTheCoffeeMachineUsingLanguageLang(lang);
         callback();
     });
 
@@ -90,6 +90,21 @@ module.exports = function () {
 
     this.Given(/^I handle everything except the grounds$/, function (callback) {
         this.actionwords.iHandleEverythingExceptTheGrounds();
+        callback();
+    });
+
+    this.Then(/^displayed message is:$/, function (__free_text, callback) {
+        this.actionwords.displayedMessageIs(__free_text);
+        callback();
+    });
+
+    this.When(/^I switch to settings mode$/, function (callback) {
+        this.actionwords.iSwitchToSettingsMode();
+        callback();
+    });
+
+    this.Then(/^settings should be:$/, function (__datatable, callback) {
+        this.actionwords.settingsShouldBe(__datatable);
         callback();
     });
 }

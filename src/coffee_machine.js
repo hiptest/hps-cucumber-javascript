@@ -7,7 +7,10 @@ exports.CoffeeMachine = function CoffeeMachine () {
     _started: false,
     _coffeeServed: false,
     _message: '',
-    _lang: 'en'
+    _lang: 'en',
+    _settingsDisplayed: false,
+    _waterHardness: '2',
+    _grinder: 'medium'
   }
 
   instance.i18n = {
@@ -15,14 +18,16 @@ exports.CoffeeMachine = function CoffeeMachine () {
       tank: 'Fill tank',
       beans: 'Fill beans',
       grounds: 'Empty grounds',
-      ready: 'Ready'
+      ready: 'Ready',
+      settings: 'Settings:\n - 1: water hardness\n - 2: grinder'
     },
 
     fr: {
       tank: 'Remplir reservoir',
       beans: 'Ajouter grains',
       grounds: 'Vider marc',
-      ready: 'Pret'
+      ready: 'Pret',
+      settings: 'Configurer:\n - 1: durete de l eau\n - 2: mouture'
     }
   }
 
@@ -61,6 +66,11 @@ exports.CoffeeMachine = function CoffeeMachine () {
       return;
     }
 
+    if (instance.get('settingsDisplayed')) {
+      instance.set('message', messages.settings);
+      return;
+    }
+
     if (instance.get('tank') <= 10) {
       instance.set('message', messages.tank);
       return;
@@ -83,6 +93,8 @@ exports.CoffeeMachine = function CoffeeMachine () {
   instance.addListener('tank', updateMessage);
   instance.addListener('beans', updateMessage);
   instance.addListener('grounds', updateMessage);
+  instance.addListener('settingsDisplayed', updateMessage);
+
 
   instance.start = function (lang) {
     instance.set('lang', lang || 'en');
@@ -122,5 +134,15 @@ exports.CoffeeMachine = function CoffeeMachine () {
     instance.set('grounds', 0);
   }
 
+  instance.showSettings = function () {
+    this.set('settingsDisplayed', true);
+  }
+
+  instance.getSettings = function () {
+    return {
+      'water hardness': this.get('waterHardness'),
+      'grinder': this.get('grinder')
+    }
+  }
   return instance;
 }

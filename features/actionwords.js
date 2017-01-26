@@ -8,7 +8,7 @@ exports.Actionwords = {
     return this.coffeeMachine;
   },
 
-  iStartTheCoffeeMachine: function (lang) {
+  iStartTheCoffeeMachineUsingLanguageLang: function (lang) {
     this.getCoffeeMachine().start(lang);
   },
 
@@ -64,7 +64,7 @@ exports.Actionwords = {
   },
 
   theCoffeeMachineIsStarted: function () {
-    this.iStartTheCoffeeMachine();
+    this.iStartTheCoffeeMachineUsingLanguageLang();
   },
 
   _handledTanks: function () {
@@ -101,5 +101,20 @@ exports.Actionwords = {
   iHandleEverythingExceptTheGrounds: function () {
       this.iHandleWaterTank();
       this.iHandleBeans();
+  },
+
+  displayedMessageIs: function (__free_text) {
+      this.messageMessageShouldBeDisplayed(__free_text);
+  },
+
+  iSwitchToSettingsMode: function () {
+    this.getCoffeeMachine().showSettings();
+  },
+
+  settingsShouldBe: function (__datatable) {
+    let hashSettings = this.getCoffeeMachine().getSettings();
+    let settings = Object.keys(hashSettings).map(key => [key, hashSettings[key]]);
+
+    assert.deepEqual(__datatable.raw(), settings);
   }
 };
