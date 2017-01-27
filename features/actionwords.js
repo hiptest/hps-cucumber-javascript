@@ -112,8 +112,8 @@ exports.Actionwords = {
   },
 
   settingsShouldBe: function (__datatable) {
-    let hashSettings = this.getCoffeeMachine().getSettings();
-    let settings = Object.keys(hashSettings).map(key => [key, hashSettings[key]]);
+    var hashSettings = this.getCoffeeMachine().getSettings(),
+      settings = Object.keys(hashSettings).map(key => [key, hashSettings[key]]);
 
     assert.deepEqual(__datatable.raw(), settings);
   }
