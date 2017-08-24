@@ -4,6 +4,7 @@ exports.CoffeeMachine = function CoffeeMachine () {
     _tank: 60,
     _beans: 40,
     _grounds: 0,
+    _countdownToDescale: 500,
     _started: false,
     _coffeeServed: false,
     _message: '',
@@ -19,7 +20,8 @@ exports.CoffeeMachine = function CoffeeMachine () {
       beans: 'Fill beans',
       grounds: 'Empty grounds',
       ready: 'Ready',
-      settings: 'Settings:\n - 1: water hardness\n - 2: grinder'
+      settings: 'Settings:\n - 1: water hardness\n - 2: grinder',
+      descale: 'Descaling is needed'
     },
 
     fr: {
@@ -27,7 +29,8 @@ exports.CoffeeMachine = function CoffeeMachine () {
       beans: 'Ajouter grains',
       grounds: 'Vider marc',
       ready: 'Pret',
-      settings: 'Configurer:\n - 1: durete de l eau\n - 2: mouture'
+      settings: 'Configurer:\n - 1: durete de l eau\n - 2: mouture',
+      descale: 'Detartrage requisd'
     }
   }
 
@@ -86,6 +89,11 @@ exports.CoffeeMachine = function CoffeeMachine () {
       return;
     }
 
+    if (instance.isDescalingNeeded()) {
+      instance.set('message', messages.descale);
+      return;
+    }
+
     instance.set('message', messages.ready);
   }
 
@@ -93,6 +101,7 @@ exports.CoffeeMachine = function CoffeeMachine () {
   instance.addListener('tank', updateMessage);
   instance.addListener('beans', updateMessage);
   instance.addListener('grounds', updateMessage);
+  instance.addListener('countdownToDescale', updateMessage);
   instance.addListener('settingsDisplayed', updateMessage);
 
 
@@ -120,6 +129,7 @@ exports.CoffeeMachine = function CoffeeMachine () {
     instance.set('tank', instance.get('tank') - 1);
     instance.set('beans', instance.get('beans') - 1);
     instance.set('grounds', instance.get('grounds') + 1);
+    instance.set('countdownToDescale', instance.get('countdownToDescale') - 1);
   }
 
   instance.fillTank = function () {
@@ -144,5 +154,14 @@ exports.CoffeeMachine = function CoffeeMachine () {
       'grinder': this.get('grinder')
     }
   }
+
+  instance.descale = function () {
+    this.set('countdownToDescale', 500);
+  }
+
+  instance.isDescalingNeeded = function () {
+    return this.get('countdownToDescale') <= 0;
+  }
+
   return instance;
 }
