@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "cucumber": "^1.2.2",
+    "cucumber": "^3.0",
     "cucumberjs-junit": "git://github.com/vincent-psarga/cucumber-junit.git"
   }
 }

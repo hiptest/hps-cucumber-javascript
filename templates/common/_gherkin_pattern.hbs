@@ -1,0 +1,1 @@
+'{{#strip}}{{#each chunks}}{{#if this.is_parameter}}{{#curly}}string{{/curly}}{{else}}{{this.value}}{{/if}}{{/each}}{{#each extra_inlined_parameters}} "{{this.value}}"{{/each}}{{/strip}}'

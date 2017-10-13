@@ -1,0 +1,10 @@
+var {{#curly}}defineSupportCode{{/curly}} = require('cucumber');
+
+defineSupportCode(function({{#curly}}Before, After, Given, When, Then{{/curly}}) {{#curly}}{{#indent}}
+{{> before_hook}}
+
+{{> after_hook}}
+
+{{#each rendered_children.actionwords}}{{{this}}}
+{{/each}}{{/indent}}
+{{/curly}});
