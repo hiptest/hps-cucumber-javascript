@@ -3,7 +3,7 @@
 
 Hiptest publisher samples with Cucumber/Javascript
 
-In this repository you'll find tests generated in Cucumber/Javascript format from [Hiptest](https://hiptest.net), using [Hiptest publisher](https://github.com/hiptest/hiptest-publisher).
+In this repository you'll find tests generated in Cucumber/Javascript format from [Hiptest](https://hiptest.com), using [Hiptest publisher](https://github.com/hiptest/hiptest-publisher).
 
 The goals are:
 
